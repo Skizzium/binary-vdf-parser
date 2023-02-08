@@ -1,6 +1,6 @@
 # VDF Parser
 ## Decoding Guide
-VDFs are formatted in LE (little endian), meaning multi-byte values should be interpreted left-to-right. For example, a 16bit integer `0x01 0x00` should be interpreted as 1 instead of 256. In Node.js, use `buffer.readUInt32LE()` to read a 32bit unsigned integer.
+VDFs are formatted in LE (little endian), meaning multi-byte values should be interpreted right-to-left. For example, a 16bit integer `0x01 0x00` should be interpreted as 1 instead of 256. In Node.js, use `buffer.readUInt32LE()` to read a 32bit unsigned integer.
 
 There are a few bytes that will appear before any data. These bytes indicate which type of data will follow:
 - The first data type is a map (or object, in JS terms), represented by `0x00`. The next byte will be the first entry inside of this new map.
