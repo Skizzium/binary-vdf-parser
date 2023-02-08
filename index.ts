@@ -65,11 +65,18 @@ function getProperty(buffer: Buffer, offset: number): { offset: number, property
 function readVdf(buffer: Buffer) {
   const infos: any[] = [];
   let offset = 0;
+  
+  const APPINFO_STRING = '00617070696E666F00';
 
   while (offset < buffer.length) {
+    // Find next appinfo header
+    const nextAppinfoOffset = buffer.subarray(offset).indexOf(APPINFO_STRING, 0, 'hex');
+    if (nextAppinfoOffset === -1) break;
+    offset += nextAppinfoOffset;
+    
     const appInfo: any = {};
     const propertyInfo = getProperty(buffer, offset);
-    offset += propertyInfo.offset;
+    offset = propertyInfo.offset;
     appInfo[propertyInfo.property.key] = propertyInfo.property.value;
     
     infos.push(appInfo);
