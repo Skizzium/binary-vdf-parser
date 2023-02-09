@@ -7,7 +7,7 @@
 ![GitHub Issues](https://img.shields.io/github/issues-raw/Skizzium/binary-vdf-parser)
 ![GitHub PRs](https://img.shields.io/github/issues-pr-raw/Skizzium/binary-vdf-parser)
 
-`binary-vdf-parser` is a module for parsing Steam binary VDF files such as appinfo.vdf or shortcuts.vdf. It was created for the Skizzium Launcher after encountering issues parsing `appinfo.vdf` with existing packages such as [steam-binary-vdf](https://www.npmjs.com/package/steam-binary-vdf) and [binary-vdf](https://www.npmjs.com/package/binary-vdf).
+`binary-vdf-parser` is a module for parsing Steam binary VDF files such as `appinfo.vdf` or `shortcuts.vdf`. It was created for the Skizzium Launcher after encountering issues parsing `appinfo.vdf` with existing packages such as [steam-binary-vdf](https://www.npmjs.com/package/steam-binary-vdf) and [binary-vdf](https://www.npmjs.com/package/binary-vdf).
 
 
 ## Usage
