@@ -8,8 +8,11 @@
 	"bugs": "https://github.com/Skizzium/binary-vdf-parser/issues",
 	"keywords": [
 		"steam",
+		"valve",
 		"vdf",
-		"binary vdf"
+		"vdf-format",
+		"vdf-parser",
+		"binary-vdf"
 	],
 	"main": "index.js",
 	"repository": {
