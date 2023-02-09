@@ -1,4 +1,30 @@
-# VDF Parser
+# Binary VDF Parser
+
+<a href="https://www.npmjs.com/package/binary-vdf-parser"><img src="https://nodei.co/npm/binary-vdf-parser.png?compact=true" alt="" /></a>
+
+![NPM](https://img.shields.io/npm/v/binary-vdf-parser)
+![NPM License](https://img.shields.io/npm/l/binary-vdf-parser)
+![GitHub Issues](https://img.shields.io/github/issues-raw/Skizzium/binary-vdf-parser)
+![GitHub PRs](https://img.shields.io/github/issues-pr-raw/Skizzium/binary-vdf-parser)
+
+`binary-vdf-parser` is a module for parsing Steam binary VDF files such as appinfo.vdf or shortcuts.vdf. It was created for the Skizzium Launcher after encountering issues parsing `appinfo.vdf` with existing packages such as [steam-binary-vdf](https://www.npmjs.com/package/steam-binary-vdf) and [binary-vdf](https://www.npmjs.com/package/binary-vdf).
+
+
+## Usage
+Install with `npm i --save binary-vdf-parser`
+
+```js
+import fs from 'fs';
+import path from 'path';
+import { readVdf } from './index';
+
+const filepath = path.resolve('path/to/file.vdf');
+const buffer = fs.readFileSync(filepath);
+const appinfo = readVdf(buffer);
+
+console.log(appinfo);
+```
+
 ## Decoding Guide
 VDFs are formatted in LE (little endian), meaning multi-byte values should be interpreted right-to-left. For example, a 16bit integer `0x01 0x00` should be interpreted as 1 instead of 256. In Node.js, use `buffer.readUInt32LE()` to read a 32bit unsigned integer.
 
