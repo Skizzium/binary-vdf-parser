@@ -1,9 +1,9 @@
 type Property = { key: string, value: string | number | Property[] };
 
-function getString(buffer: Buffer, offset: number): string {
+function getString(buffer: Buffer, offset: number): [ value: string, length: number ] {
   const currentBuffer = buffer.subarray(offset);
   const length = currentBuffer.findIndex((byte) => byte === 0x00);
-  return currentBuffer.toString('utf-8', 0, length);
+  return [ currentBuffer.toString('utf-8', 0, length), length ];
 }
 
 function getNumber(buffer: Buffer, offset: number): number {
@@ -17,8 +17,8 @@ function getProperty(buffer: Buffer, offset: number): { offset: number, property
       offset++; // Skip newmap byte
 
       // Read key name
-      const key = getString(buffer, offset);
-      offset += Buffer.from(key).length + 1; // String length + null terminator
+      const [ key, keyLength ] = getString(buffer, offset);
+      offset += keyLength + 1; // String length + null terminator
 
       // Get properties in value
       const property: any = { key, value: {} };
@@ -35,11 +35,11 @@ function getProperty(buffer: Buffer, offset: number): { offset: number, property
     // Property containing string
     case 0x01: {
       offset++;
-      const key = getString(buffer, offset);
-      offset += Buffer.from(key).length + 1;
+      const [ key, keyLength ] = getString(buffer, offset);
+      offset += keyLength + 1;
 
-      const value = getString(buffer, offset);
-      offset += Buffer.from(value).length + 1;
+      const [ value, valueLength ] = getString(buffer, offset);
+      offset += valueLength + 1;
 
       const property = { key, value };
       return { offset, property };
@@ -48,12 +48,12 @@ function getProperty(buffer: Buffer, offset: number): { offset: number, property
     // Property containing number
     case 0x02: {
       offset++;
-      const key = getString(buffer, offset);
-      offset += key.length + 1;
-
+      const [ key, keyLength ] = getString(buffer, offset);
+      offset += keyLength + 1;
+      
       const value = getNumber(buffer, offset);
       offset += 4;
-
+      
       const property = { key, value };
       return { offset, property};
     }
