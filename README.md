@@ -3,6 +3,7 @@
 <a href="https://www.npmjs.com/package/binary-vdf-parser"><img src="https://nodei.co/npm/binary-vdf-parser.png?compact=true" alt="" /></a>
 
 ![NPM](https://img.shields.io/npm/v/binary-vdf-parser)
+![NPM Downloads](https://img.shields.io/npm/dt/binary-vdf-parser)
 ![NPM License](https://img.shields.io/npm/l/binary-vdf-parser)
 ![GitHub Issues](https://img.shields.io/github/issues-raw/Skizzium/binary-vdf-parser)
 ![GitHub PRs](https://img.shields.io/github/issues-pr-raw/Skizzium/binary-vdf-parser)
